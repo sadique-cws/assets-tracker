@@ -7,35 +7,29 @@ use Illuminate\Http\Request;
 
 class AssetsTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        //
+        
+        return view("pages/manageAssetType",['assetsType' => AssetsType::all()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'assets_type_name'=>'required'
+        ]);
+
+        $at = new AssetsType();
+        $at->assets_type_name = $request->assets_type_name;
+        $at->assets_type_description = $request->assets_type_description;
+        $at->save();
+
+        return redirect()->route("assetsType.index");
     }
 
     /**
