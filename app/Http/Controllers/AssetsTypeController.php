@@ -74,6 +74,7 @@ class AssetsTypeController extends Controller
      */
     public function destroy(AssetsType $assetsType)
     {
-        //
+        $assetsType->delete();
+        return redirect()->route("assetsType.index");
     }
 }

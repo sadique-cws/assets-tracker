@@ -11,6 +11,9 @@ Route::get('/', function () {
 
 
 Route::get('/login', function () {
+    if(auth()->check()){
+        return redirect()->route("home");
+    }
     return view('pages/login');
 })->name("login");
 

@@ -17,11 +17,19 @@
                             <th>Action</th>
                         </tr>
                         @foreach ($assetsType as $item)
-                            <tr>
+                            <tr class="border border-gray-300">
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->assets_type_name}}</td>
                                 <td>{{$item->assets_type_description}}</td>
-                                <td></td>
+                                <td class="flex gap-2">
+                                    <form action="{{route('assetsType.destroy',$item)}}" method="POST">
+                                        @csrf
+                                        @method("delete")
+                                        <button type="submit" class="bg-red-500 text-white px-2 py-0.5 text-sm rounded hover:bg-red-700">Delete</button>
+                                    </form>
+
+                                    <a href="" class="bg-teal-700 text-white px-2 py-0.5 text-sm rounded hover:bg-teal-900">Edit</a>
+                                </td>
                             </tr>
                         @endforeach
                     </thead>
